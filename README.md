@@ -14,12 +14,6 @@ docker build -t webconui .
 
 Run:
 
-docker run -d \
-  --name webconui \
-  -v /dev/net/tun:/dev/net/tun \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /redroid-data:/redroid-data \
-  -p 80:5000 \
-  webconui
+docker run -d --name webconui -v /dev/net/tun:/dev/net/tun -v /var/run/docker.sock:/var/run/docker.sock -v /redroid-data:/redroid-data -p 80:5000 webconui
   
 Then type your device IP in a browser the page will show up after pressing enter.
