@@ -1,13 +1,24 @@
-# Dockerfile
-
 FROM python:3.11-slim
 
-# 安装 docker 客户端所需的依赖
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    libffi-dev \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY . /app
-RUN pip install --no-cache-dir flask docker
+
+COPY requirements.txt /app/
+COPY main.py /app/
+COPY templates /app/templates
+
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
+
 CMD ["python", "main.py"]
