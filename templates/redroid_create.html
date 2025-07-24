@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>创建 Redroid 容器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body {font-family:"微软雅黑",Arial,sans-serif;background:#f0f2f5;color:#333;padding:20px;}
+    .container {max-width:600px;margin:0 auto;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:28px 22px;}
+    h2 {margin-bottom:18px;}
+    form label {display:block;margin:10px 0 6px;font-weight:bold;}
+    form input,form select {
+      width: 100%;
+      min-width: 0;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+      margin-bottom: 8px;
+      background: #fafbfc;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+    button {margin-top:14px;padding:10px 30px;background:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:1.1em;}
+    button:hover {background:#0056b3;}
+    .back-link {margin-top:15px;display:inline-block;}
+    @media (max-width: 700px) {
+      .container {padding: 12px 4vw;}
+      form input,form select {font-size:1em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>创建 Redroid 容器</h2>
+    <form action="/redroid/create" method="post">
+      <label>容器名（不带 redroid- 前缀）</label>
+      <input name="name" required placeholder="如: testdevice">
+      <label>端口</label>
+      <input name="port" required type="number" min="5555" max="65535" placeholder="如: 5555">
+      <label>分辨率宽(px)</label>
+      <input name="width" type="number" required min="100" max="5000" value="720">
+      <label>分辨率高(px)</label>
+      <input name="height" type="number" required min="100" max="5000" value="1280">
+      <label>代理服务器</label>
+      <select name="proxy">
+        <option value="none">不使用代理</option>
+        {% for v in proxies %}
+          <option value="{{ v.name }}">{{ v.name }} ({{ v.proxy_type }}://{{ v.proxy_addr }}:{{ v.proxy_port }})</option>
+        {% endfor %}
+      </select>
+      <button type="submit">创建 Redroid 容器</button>
+    </form>
+    <a href="/" class="back-link">← 返回首页</a>
+  </div>
+</body>
+</html>

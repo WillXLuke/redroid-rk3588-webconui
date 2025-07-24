@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>创建 V2Ray 容器</title>
+</head>
+<body>
+    <h1>创建 V2Ray 容器</h1>
+    <form method="POST">
+        <label>名称:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>出口代理协议 (outbound protocol):</label><br>
+        <select name="proxy_type" required>
+            <option value="socks">SOCKS5</option>
+            <option value="http">HTTP</option>
+            <option value="shadowsocks">Shadowsocks</option>
+            <option value="vmess">VMess</option>
+            <option value="vless">VLESS</option>
+        </select><br><br>
+
+        <label>代理服务器地址:</label><br>
+        <input type="text" name="proxy_addr" required><br><br>
+
+        <label>代理服务器端口:</label><br>
+        <input type="text" name="proxy_port" required><br><br>
+
+        <label>用户名 (可选):</label><br>
+        <input type="text" name="proxy_user"><br><br>
+
+        <label>密码 (可选):</label><br>
+        <input type="text" name="proxy_pass"><br><br>
+
+        <input type="submit" value="创建">
+    </form>
+</body>
+</html>
